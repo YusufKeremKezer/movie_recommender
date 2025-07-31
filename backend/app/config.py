@@ -1,5 +1,4 @@
 from pydantic_settings import BaseSettings
-from pydantic import SettingsConfigDict
 
 class Settings(BaseSettings):
     """Configuration settings for the movie recommender preprocessing pipeline"""
@@ -8,9 +7,10 @@ class Settings(BaseSettings):
     TOTAL_MESSAGES_SUMMARY_TRIGGER: int = 30
     TOTAL_MESSAGES_AFTER_SUMMARY: int = 5
     
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    class Config:
+        env_file = ".env"  # Specify the location of the environment file
+        env_file_encoding = "utf-8"  # Encoding for the environment file
 
 
 settings = Settings()
 
-print(settings.model_dump_json(indent=2))

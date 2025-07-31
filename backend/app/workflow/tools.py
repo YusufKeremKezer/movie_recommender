@@ -1,16 +1,15 @@
 # app/application/tools/movie_retriever_tool.py
 
 from langchain_core.tools import create_retriever_tool
-from vector_store import get_chroma_vector_store
+from vector_store import get_chroma_retriever
 
-def get_movie_retriever_tool():
-    """Create and return the movie retriever tool"""
-    return create_retriever_tool(
-        retriever=get_chroma_vector_store(),
+
+retriever_tool = create_retriever_tool(
+        retriever=get_chroma_retriever(),
         name="movie_retriever_tool",
-        description="A tool that can retrieve information from the vector store about movies. Use this when you need to search for specific movies or movie information."
+        description=" Search the vector store for movies and tv series. Always use this tool when the user asks you about recommendation for a movie or tv series"
     )
 
 
-
+tools = [retriever_tool]
 

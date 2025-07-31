@@ -1,53 +1,48 @@
 from langgraph.graph import StateGraph, START, END
-from workflow.state import UserState
+from workflow.state import UserInteractionState
 from workflow.nodes import (
+    conversation_node,
     summarize_conversation_node,
-    recommendation_node,
+    retriever_node,
 )
-from workflow.edges import should_extend_summary
+from langgraph.prebuilt import tools_condition
+from workflow.nodes import connector_node
+from workflow.edges import should_summarize_conversation
 from langchain_core.messages import HumanMessage
 import asyncio
-from langgraph.prebuilt import ToolNode
-from app.workflow.tools import get_movie_retriever_tool
+
 
 
 def create_workflow_graph():
     """Create the langgraph workflow graph"""
-    workflow = StateGraph(UserState)
+    graph = StateGraph(UserInteractionState)
 
     # Add nodes
-    workflow.add_node("summarize_conversation", summarize_conversation_node)
-    workflow.add_node("recommendation", recommendation_node)
-    workflow.add_node("tools", ToolNode([get_movie_retriever_tool()]))
-
-    # Add edges
-    workflow.add_conditional_edges(
-        "summarize_conversation",
-        should_extend_summary,
+    graph.add_node("summarize_conversation_node", summarize_conversation_node)
+    graph.add_node("conversation_node", conversation_node)
+    graph.add_node("recommendation_retriever_node", retriever_node)
+    graph.add_node("connector_node", connector_node)
+    graph.add_conditional_edges(
+        "conversation_node",
+        tools_condition,
         {
-            "extend_summary": "summarize_conversation",
-            "summary": "recommendation",
-        },
+            "tools": "recommendation_retriever_node",
+            END: "connector_node"
+        }
     )
-    
-    workflow.add_conditional_edges(
-        "recommendation",
-        should_call_tools,
-        {
-            "tools": "tools",
-            "end": END,
-        },
-    )
-    
-    workflow.add_edge("tools", "recommendation")
-    workflow.set_entry_point("summarize_conversation")
+    graph.add_edge(START,"conversation_node")
+    graph.add_edge("recommendation_retriever_node", "conversation_node")
+    graph.add_conditional_edges("connector_node", should_summarize_conversation)
+    graph.add_edge("summarize_conversation_node", END)
 
-    return workflow.compile()
+    return graph.compile()
 
 
 async def chat_with_graph():
     """Interactive conversation with the graph"""
     graph = create_workflow_graph()
+    print(graph.get_graph().draw_ascii())
+
     state = {"messages": [], "summary": ""}
     
     print("Movie Recommender Chat (type 'quit' to exit)")
@@ -74,4 +69,5 @@ async def chat_with_graph():
 
 
 if __name__ == "__main__":
+
     asyncio.run(chat_with_graph())

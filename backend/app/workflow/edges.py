@@ -1,10 +1,15 @@
 from config import settings
-from typing import Dict, Any
+from typing import Literal
+from workflow.state import UserInteractionState
+from langgraph.graph import END
 
-async def should_extend_summary(state: Dict[str, Any]):
-    
-    if len(state["messages"]) > settings.TOTAL_MESSAGES_SUMMARY_TRIGGER:
-        return "extend_summary"
-    else:
-        return "summary"
+def should_summarize_conversation(
+    state: UserInteractionState,
+) -> Literal["summarize_conversation_node", END]:
+    messages = state["messages"]
+
+    if len(messages) > settings.TOTAL_MESSAGES_SUMMARY_TRIGGER:
+        return "summarize_conversation_node"
+
+    return END
 
