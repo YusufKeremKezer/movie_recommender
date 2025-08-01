@@ -17,8 +17,7 @@ class Prompt:
 
 __SUMMARY_PROMPT = """Create a comprehensive summary of the conversation between the user and AI assistant that includes all movie preferences mentioned.
 
-User: {user_message}
-Context: {conversation_context}
+messages: {messages}
 
 The summary must be a short description of the conversation so far, but that also captures all the relevant information shared between the user and the AI assistant, specifically including any movie preferences such as:
 - Preferred genres

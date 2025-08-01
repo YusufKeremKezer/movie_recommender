@@ -13,3 +13,12 @@ def should_summarize_conversation(
 
     return END
 
+def should_use_wikipedia(
+    state: UserInteractionState,
+) -> Literal["wikipedia_node", END]:
+    messages = state["messages"]
+
+    if len(messages) > settings.TOTAL_MESSAGES_SUMMARY_TRIGGER:
+        return "summarize_conversation_node"
+
+    return END
