@@ -1,0 +1,92 @@
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Distribution / packaging directories
+.eggs/
+dist/
+build/
+*.egg-info/
+.tox/
+
+# Testing
+.pytest_cache/
+.coverage
+.nyc_output/
+coverage.xml
+*.cover
+.hypothesis/
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Git
+.git/
+.gitignore
+
+# Docker files (don't include other docker files in the image)
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+README.md
+*.md
+
+# Environment files with secrets
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Node modules (if any frontend dependencies)
+node_modules/
+
+# Python cache directories
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Large model files (if any)
+*.pkl
+*.joblib
+*.h5
+*.pb
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
