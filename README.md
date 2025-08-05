@@ -1,8 +1,7 @@
 # Movie Recommender
 
-## What It Does
 
-This is an AI-powered movie and TV series recommendation system with an interactive chat-based interface. Users can ask for personalized movie and TV show recommendations through a conversational interface. The system understands user preferences, mood, and genre preferences to provide tailored suggestions. It also provides additional information about movies and TV series by integrating with Wikipedia.
+AI-powered movie and TV series recommendation system with an interactive chat-based interface. Users can ask for personalized movie and TV show recommendations through a conversational interface. The system understands user preferences, mood, and genre preferences to provide tailored suggestions. It also provides additional information about movies and TV series by integrating with Wikipedia.
 
 Key features:
 - **Conversational Interface**: Chat-based UI for natural interaction
