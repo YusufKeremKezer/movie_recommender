@@ -2,10 +2,11 @@ import asyncio
 from langchain_core.messages import HumanMessage, AIMessage
 from workflow.graph import create_workflow_graph
 
+graph = create_workflow_graph()
+
 async def get_ai_response(user_input, chat_history):
     """Get the AI's response to a user's message."""
-    graph = create_workflow_graph()
-
+    
     # Convert the chat history to the expected format
     messages = []
     for msg in chat_history:
@@ -18,8 +19,9 @@ async def get_ai_response(user_input, chat_history):
     state["messages"].append(HumanMessage(content=user_input))
     
     result = await graph.ainvoke(state)
-    return result["messages"][-1].content
+    if type(result) == list:
+        return result[0]["text"]
+    else:
+        return result["messages"][-1].content
 
 
-if __name__ == "__main__":
-    asyncio.run(chat_with_graph())

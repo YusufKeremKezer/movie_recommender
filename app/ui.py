@@ -1,6 +1,6 @@
 import streamlit as st
 import asyncio
-from main import get_ai_response
+from chat import get_ai_response
 
 st.title("Movie Recommender")
 

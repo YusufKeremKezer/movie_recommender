@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     # App settings
     TOTAL_MESSAGES_SUMMARY_TRIGGER: int = 30
     TOTAL_MESSAGES_AFTER_SUMMARY: int = 5
-    
+    GOOGLE_API_KEY: str
     class Config:
         env_file = ".env"  # Specify the location of the environment file
         env_file_encoding = "utf-8"  # Encoding for the environment file

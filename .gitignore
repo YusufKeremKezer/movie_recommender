@@ -133,6 +133,11 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
+# OpenMemory
+openmemory.md
+*.openmemory.md
+
+
 # Environments
 .env
 .envrc
@@ -203,3 +208,7 @@ __marimo__/
 
 # Data
 long_term_memory/
+
+# OpenMemory - IDE/Assistant specific rules
+.cursor\rules\openmemory.mdc
+.cursor\rules\openmemory.mdc

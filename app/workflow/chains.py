@@ -20,7 +20,7 @@ def get_chat_model():
     if not api_key:
         raise ValueError("GOOGLE_API_KEY not found in environment variables.")
     return ChatGoogleGenerativeAI(
-        model="gemini-2.0-flash", temperature=0.7, google_api_key=api_key
+        model="gemini-2.5-flash", temperature=0.7, google_api_key=api_key
     )
 
 async def get_response_chain():
