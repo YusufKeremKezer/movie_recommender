@@ -1,0 +1,11 @@
+services:
+  movie-recommender:
+    build: .
+    ports:
+      - 8501:8501
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+    volumes:
+      - ./app/long_term_memory:/movie_recommender/app/long_term_memory
+
+    command: ["uv", "run", "streamlit", "run", "ui.py", "--server.address=0.0.0.0", "--server.port=8501"]

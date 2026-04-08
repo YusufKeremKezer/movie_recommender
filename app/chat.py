@@ -19,9 +19,9 @@ async def get_ai_response(user_input, chat_history):
     state["messages"].append(HumanMessage(content=user_input))
     
     result = await graph.ainvoke(state)
-    if type(result) == list:
-        return result[0]["text"]
-    else:
-        return result["messages"][-1].content
+    content = result["messages"][-1].content
+    if isinstance(content, list):
+        return "".join(block["text"] for block in content if block.get("type") == "text")
+    return content
 
 

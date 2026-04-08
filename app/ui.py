@@ -29,3 +29,4 @@ if prompt := st.chat_input("What would you like to watch?"):
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
 
+ 

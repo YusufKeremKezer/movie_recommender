@@ -206,9 +206,8 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Data
+# Dat
 long_term_memory/
-
+app/long_term_memory/
 # OpenMemory - IDE/Assistant specific rules
-.cursor\rules\openmemory.mdc
-.cursor\rules\openmemory.mdc
+.cursor/

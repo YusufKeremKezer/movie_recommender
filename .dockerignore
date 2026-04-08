@@ -90,3 +90,5 @@ dmypy.json
 *.sqlite
 *.sqlite3
 *.db
+
+app/long_term_memory
