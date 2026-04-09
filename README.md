@@ -1,4 +1,4 @@
-# Movie Recommender
+# Movie Recommendation app
 
 
 AI-powered movie and TV series recommendation system with an interactive chat-based interface. Users can ask for personalized movie and TV show recommendations through a conversational interface. The system understands user preferences, mood, and genre preferences to provide tailored suggestions. It also provides additional information about movies and TV series by integrating with Wikipedia.
@@ -14,24 +14,24 @@ Key features:
 
 - **Python 3.12** - Core programming language
 - **Streamlit** - Web user interface framework
-- **Google Gemini 2.0 Flash** - AI language model for generating recommendations
+- **Google Gemini 2.5 Flash** - AI language model for generating recommendations
 - **LangChain & LangGraph** - AI workflow and orchestration framework
 - **ChromaDB** - Vector database for movie data storage and similarity search
 - **HuggingFace Embeddings** - Text embeddings using Alibaba-NLP/gte-multilingual-base model
 - **Wikipedia API** - External data source for movie information
 - **Docker** - Containerization platform
 
-## Docker Hub Usage
+## Build Docker image
 
-### For Users - Pull and Run Pre-built Image
+### For Users - 
+git clone https://github.com/YusufKeremKezer/movie_recommender.git
 
-If the image is available on Docker Hub, anyone can pull and run it without building:
+[Download the dataset from drive](https://drive.google.com/drive/folders/1KTGdwcJglvuoTyBu9dO4JGQNvKqBhMIa?usp=sharing)
+
+copy inside /app
 
 ```bash
-# Pull the image from Docker Hub
-docker pull keremz/movie_recommendation_app:latest
-
-# Run the container
-docker run -p 8501:8501 -e GOOGLE_API_KEY=your_google_api_key_here keremz/movie_recommendation_app:latest
+# Run the compose file
+docker compose --env-file .env up -d --build
 ```
 

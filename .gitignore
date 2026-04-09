@@ -211,3 +211,4 @@ long_term_memory/
 app/long_term_memory/
 # OpenMemory - IDE/Assistant specific rules
 .cursor/
+.cursor\rules\openmemory.mdc
